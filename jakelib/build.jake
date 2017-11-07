@@ -51,7 +51,7 @@ namespace('build', () => {
     ], (error) => { error ? fail(error) : complete() })
   })
 
-  task('deploy', ['deploy:cname'])
+  task('deploy', ['deploy:cname', 'deploy:vendor'])
 
   namespace('deploy', () => {
     task('cname', { async: true }, () => {
