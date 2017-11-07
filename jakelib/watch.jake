@@ -2,7 +2,7 @@
 
 const chokidar = require('chokidar')
 
-task('watch', { async: true }, () => {
+task('watch', ['build'], { async: true }, () => {
   jake.Task['watch:html'].invoke()
   jake.Task['watch:css'].invoke()
   jake.Task['watch:js'].invoke()
