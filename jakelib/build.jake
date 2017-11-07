@@ -10,7 +10,7 @@ const sass       = require('node-sass')
 const browserify = require('browserify')
 
 desc('Build website')
-task('build', ['clean', 'build:html', 'build:css', 'build:js'])
+task('build', ['clean', 'build:html', 'build:css', 'build:js', 'build:deploy'])
 
 namespace('build', () => {
   task('html', { async: true }, () => {
@@ -48,5 +48,15 @@ namespace('build', () => {
       (done) => { b.bundle(done) },
       (result, done) => { writeFile('./htdocs/js/main.js', result, done) }
     ], (error) => { error ? fail(error) : complete() })
+  })
+
+  task('deploy', ['deploy:cname'])
+
+  namespace('deploy', () => {
+    task('cname', { async: true }, () => {
+      writeFile('./htdocs/CNAME', 'www.oy-brigade.work', (error) => {
+        error ? fail(error) : complete()
+      })
+    })
   })
 })
