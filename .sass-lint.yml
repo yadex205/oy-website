@@ -1,0 +1,7 @@
+files:
+  include: './src/css/**/*.{sass,scss}'
+
+rules:
+  property-sort-order:
+    - 2
+    - order: concentric
