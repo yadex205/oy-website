@@ -17,6 +17,7 @@
   "homepage": "https://github.com/yadex205/oy-website#readme",
   "devDependencies": {
     "async": "^2.5.0",
+    "browser-sync": "^2.18.13",
     "browserify": "^14.5.0",
     "chokidar": "^1.7.0",
     "ejs": "^2.5.7",
