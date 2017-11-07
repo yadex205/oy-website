@@ -1,4 +1,4 @@
-env:
+env: {}
 extends: 'eslint:recommended'
 rules:
   indent:
