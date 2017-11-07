@@ -11,7 +11,7 @@ const sass       = require('node-sass')
 const browserify = require('browserify')
 
 desc('Build website')
-task('build', ['clean', 'build:html', 'build:css', 'build:js', 'build:deploy'])
+task('build', ['clean', 'build:html', 'build:css', 'build:js', 'build:image', 'build:deploy'])
 
 namespace('build', () => {
   task('html', { async: true }, () => {
@@ -49,6 +49,12 @@ namespace('build', () => {
       (done) => { b.bundle(done) },
       (result, done) => { writeFile('./htdocs/js/main.js', result, done) }
     ], (error) => { error ? fail(error) : complete() })
+  })
+
+  task('image', { async: true }, () => {
+    cpx.copy('./src/image/**/*.{jpg,png}', './htdocs/image', (error) => {
+      error ? fail(error) : complete()
+    })
   })
 
   task('deploy', ['deploy:cname', 'deploy:vendor'])
