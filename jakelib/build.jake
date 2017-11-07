@@ -29,10 +29,10 @@ namespace('build', () => {
 
   task('css', { async: true }, () => {
     async.waterfall([
-      (done) => { glob('./src/css/**/!(_)*.{sass,scss}') },
+      (done) => { glob('./src/css/**/!(_)*.{sass,scss}', done) },
       (files, done) => {
         async.each(files, (file, sass_done) => {
-          let dest = path.join('./htdocs/css', path.relative('./src/css', replaceExt(file, './css')))
+          let dest = path.join('./htdocs/css', path.relative('./src/css', replaceExt(file, '.css')))
           sass.render({ file: file }, (error, generated) => {
             error ? sass_done(error) : writeFile(dest, generated.css, sass_done)
           })
