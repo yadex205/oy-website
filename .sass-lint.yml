@@ -4,4 +4,4 @@ files:
 rules:
   property-sort-order:
     - 2
-    - order: concentric
+    - order: smacss
