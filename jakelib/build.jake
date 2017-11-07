@@ -3,6 +3,7 @@
 const path       = require('path')
 const async      = require('async')
 const writeFile  = require('write')
+const cpx        = require('cpx')
 const replaceExt = require('replace-ext')
 const glob       = require('glob')
 const ejs        = require('ejs')
@@ -55,6 +56,18 @@ namespace('build', () => {
   namespace('deploy', () => {
     task('cname', { async: true }, () => {
       writeFile('./htdocs/CNAME', 'www.oy-brigade.work', (error) => {
+        error ? fail(error) : complete()
+      })
+    })
+
+    task('vendor', { async: true }, () => {
+      let mappings = [
+        ['./node_modules/font-awesome/{css,fonts}/**/*', './htdocs/vendor/font-awesome']
+      ]
+
+      async.each(mappings, (mapping, done) => {
+        cpx.copy(mapping[0], mapping[1], done)
+      }, (error) => {
         error ? fail(error) : complete()
       })
     })
