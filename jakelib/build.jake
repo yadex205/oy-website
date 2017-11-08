@@ -3,6 +3,7 @@
 const path       = require('path')
 const async      = require('async')
 const writeFile  = require('write')
+const cpx        = require('cpx')
 const replaceExt = require('replace-ext')
 const glob       = require('glob')
 const ejs        = require('ejs')
@@ -10,7 +11,7 @@ const sass       = require('node-sass')
 const browserify = require('browserify')
 
 desc('Build website')
-task('build', ['clean', 'build:html', 'build:css', 'build:js', 'build:deploy'])
+task('build', ['clean', 'build:html', 'build:css', 'build:js', 'build:image', 'build:deploy'])
 
 namespace('build', () => {
   task('html', { async: true }, () => {
@@ -50,11 +51,29 @@ namespace('build', () => {
     ], (error) => { error ? fail(error) : complete() })
   })
 
-  task('deploy', ['deploy:cname'])
+  task('image', { async: true }, () => {
+    cpx.copy('./src/image/**/*.{jpg,png}', './htdocs/image', (error) => {
+      error ? fail(error) : complete()
+    })
+  })
+
+  task('deploy', ['deploy:cname', 'deploy:vendor'])
 
   namespace('deploy', () => {
     task('cname', { async: true }, () => {
       writeFile('./htdocs/CNAME', 'www.oy-brigade.work', (error) => {
+        error ? fail(error) : complete()
+      })
+    })
+
+    task('vendor', { async: true }, () => {
+      let mappings = [
+        ['./node_modules/font-awesome/{css,fonts}/**/*', './htdocs/vendor/font-awesome']
+      ]
+
+      async.each(mappings, (mapping, done) => {
+        cpx.copy(mapping[0], mapping[1], done)
+      }, (error) => {
         error ? fail(error) : complete()
       })
     })

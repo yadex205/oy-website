@@ -5,6 +5,8 @@ rules:
     - error
     - 2
     - ObjectExpression: first
+      CallExpression:
+        arguments: first
   linebreak-style:
     - error
     - unix
