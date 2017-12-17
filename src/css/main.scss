@@ -1,3 +1,25 @@
 body {
   margin: 0;
+  color: #444;
+  font-family: sans-serif;
+}
+
+
+
+h1,
+h2,
+h3 {
+  color: #555;
+  // font-weight: lighter;
+}
+
+h2 {
+  &::before {
+    font-family: FontAwesome;
+    content: '\f061 '
+  }
+  &::after {
+    font-family: FontAwesome;
+    content: ' \f061'
+  }
 }
