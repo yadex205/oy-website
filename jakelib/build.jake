@@ -68,8 +68,7 @@ namespace('build', () => {
 
     task('vendor', { async: true }, () => {
       let mappings = [
-        ['./node_modules/font-awesome/{css,fonts}/**/*', './htdocs/vendor/font-awesome'],
-        ['./node_modules/p5/lib/**/*.min.js', './htdocs/vendor/p5']
+        ['./node_modules/font-awesome/{css,fonts}/**/*', './htdocs/vendor/font-awesome']
       ]
 
       async.each(mappings, (mapping, done) => {

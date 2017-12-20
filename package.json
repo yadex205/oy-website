@@ -33,7 +33,6 @@
     "write": "^1.0.3"
   },
   "dependencies": {
-    "font-awesome": "^4.7.0",
-    "p5": "^0.5.16"
+    "font-awesome": "^4.7.0"
   }
 }
