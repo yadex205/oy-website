@@ -52,7 +52,7 @@ namespace('build', () => {
   })
 
   task('image', { async: true }, () => {
-    cpx.copy('./src/image/**/*.{jpg,png}', './htdocs/image', (error) => {
+    cpx.copy('./src/image/**/*.{jpg,png,mp4}', './htdocs/image', (error) => {
       error ? fail(error) : complete()
     })
   })
