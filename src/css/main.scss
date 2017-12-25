@@ -4,22 +4,76 @@ body {
   font-family: sans-serif;
 }
 
-
-
 h1,
 h2,
 h3 {
+  margin: 128px auto 24px;
   color: #555;
-  // font-weight: lighter;
+  text-align: center;
 }
 
 h2 {
+  width: 320px;
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: black;
+  font-size: 36px;
+  line-height: 64px;
+
   &::before {
+    margin-right: 24px;
     font-family: FontAwesome;
     content: '\f061 '
   }
   &::after {
+    margin-left: 24px;
     font-family: FontAwesome;
     content: ' \f061'
   }
+}
+
+.section-video {
+  $bg-color: saturate(lighten(#18481f, 4%), 3%);
+
+  padding: 48px;
+  background-color: $bg-color;
+  box-shadow: 0 3px 5px 2px #777;
+
+  .video-wrapper {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+
+    video {
+      width: 100%;
+    }
+  }
+}
+
+.section-distribution {
+  margin: 0 auto;
+  padding: 0 48px;
+
+  ul,
+  dl {
+    width: 100%;
+    max-width: 320px;
+    margin: 48px auto;
+  }
+}
+
+
+.section-credit {
+  dl {
+    width: 100%;
+    max-width: 320px;
+    margin: 48px auto;
+  }
+}
+
+.global-footer {
+  margin: 96px 48px 48px;
+  padding-top: 24px;
+  border-top: 1px solid gray;
+
 }
